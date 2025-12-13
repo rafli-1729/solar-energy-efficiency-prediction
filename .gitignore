@@ -5,7 +5,9 @@ data/clean/*
 !.gitkeep
 
 # Models & embeddings
-models/
+models/*.pkl
+models/*.joblib
+models/inference/*.csv
 embeddings/
 
 # Python

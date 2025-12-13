@@ -215,9 +215,16 @@ class FeatureEngineering(BaseEstimator, TransformerMixin):
         df = self._apply_weather_clusters(df)
         df = self._apply_stl(df)
 
-        df = df.drop(columns=['Timestamp', 'sunrise', 'sunset', 'moonrise', 'moonset'], errors='ignore')
+        df = df.drop(columns=['Timestamp',
+                              'sunrise', 'sunset', 'moonrise', 'moonset',
+                              'tempC', 'Pressure', 'DewPointC'], errors='ignore')
+
+        self.feature_names_out_ = df.columns.to_list()
 
         return df
+
+    def get_feature_names_out(self, input_features=None):
+        return np.array(self.feature_names_out_)
 
 
 class SolarImputer(BaseEstimator, TransformerMixin):
@@ -233,8 +240,8 @@ class SolarImputer(BaseEstimator, TransformerMixin):
     def fit(self, df, y=None):
         df = df.copy()
 
-        df_prepared = self._prepare_timestamp(df)  # OK to prepare
-        # Fit KNN on prepared
+        df_prepared = self._prepare_timestamp(df)
+
         self.knn.fit(df_prepared[self.solar_cols])
         return self
 

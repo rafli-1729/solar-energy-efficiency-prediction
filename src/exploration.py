@@ -100,7 +100,7 @@ def compare_features_boxplot(
         # replot ke axis subplot
         sns.boxplot(data=melted, x='Feature', y='Value', ax=ax, palette=palette)
         ax.set_title(f'Boxplot Comparison: {col1} vs {col2}\nCorr = {corr_val:.4f}',
-                     fontsize=12, fontweight='bold')
+                     fontsize=14, fontweight='bold')
         ax.grid(True, axis='y', alpha=0.3)
 
     plt.close(tmp_fig)
@@ -132,7 +132,7 @@ def compare_features_distribution(
 
     tmp_ax.set_title(
         f'Distribution Comparison: {col1} vs {col2}\nCorr = {corr_val:.4f}',
-        fontsize=12, fontweight='bold'
+        fontsize=14, fontweight='bold'
     )
     tmp_ax.set_xlabel('Value')
     tmp_ax.legend()
@@ -156,7 +156,7 @@ def compare_features_distribution(
 
         ax.set_title(
             f'Distribution Comparison: {col1} vs {col2}\nCorr = {corr_val:.4f}',
-            fontsize=12, fontweight='bold'
+            fontsize=14, fontweight='bold'
         )
         ax.set_xlabel('Value')
         ax.legend()
@@ -268,7 +268,7 @@ def plot_monthly_seasonality(
         sns.lineplot(x=monthly_stats.index,y=monthly_stats['GHI'],
                      ax=tmp_ax2,color='orange',linestyle='--',marker='s',label='GHI')
 
-        tmp_ax1.set_title("Monthly Average: Seasonality Check")
+        tmp_ax1.set_title("Monthly Average: Seasonality Check", weight='bold')
         tmp_ax1.set_ylabel(target)
         tmp_ax2.set_ylabel("GHI")
         tmp_ax1.grid(True, alpha=0.3)
@@ -294,7 +294,7 @@ def plot_monthly_seasonality(
     sns.lineplot(x=monthly_stats.index, y=monthly_stats['GHI'],
                  ax=ax2, color='orange', linestyle='--', marker='s', label='GHI')
 
-    ax1.set_title("Monthly Average: Seasonality Check")
+    ax1.set_title("Monthly Average: Seasonality Check", weight='bold')
     ax1.set_ylabel(target)
     ax2.set_ylabel("GHI")
     ax1.grid(True, alpha=0.3)
@@ -338,7 +338,7 @@ def plot_diurnal_cycle(
         peak_hour = hourly_stats['GHI'].idxmax()
         tmp_ax.axvline(peak_hour, color='red', linestyle='--', label=f"Peak {peak_hour}:00")
 
-        tmp_ax.set_title("Diurnal Cycle – Solar Noon Check")
+        tmp_ax.set_title("Diurnal Cycle – Solar Noon Check", weight='bold')
         tmp_ax.set_ylabel("Normalized Value (0-1)")
         tmp_ax.legend()
         tmp_ax.grid(True, alpha=0.3)
@@ -358,7 +358,7 @@ def plot_diurnal_cycle(
     peak_hour = hourly_stats['GHI'].idxmax()
     ax.axvline(peak_hour, color='red', linestyle='--', label=f"Peak {peak_hour}:00")
 
-    ax.set_title("Diurnal Cycle – Solar Noon Check")
+    ax.set_title("Diurnal Cycle – Solar Noon Check", weight='bold')
     ax.set_ylabel("Normalized Value (0-1)")
     ax.legend()
     ax.grid(True, alpha=0.3)
@@ -393,7 +393,7 @@ def plot_two_feature_scatter(
         sns.scatterplot(data=data, x=feature2, y=target, ax=tmp_ax, alpha=0.30,
                         label=f'{feature2} vs {target}', color=colors[1])
 
-        tmp_ax.set_title(f"{feature1} & {feature2} vs {target}")
+        tmp_ax.set_title(f"{feature1} & {feature2} vs {target}", weight='bold')
         tmp_ax.set_xlabel("Feature Value")
         tmp_ax.set_ylabel(target)
         tmp_ax.legend()
@@ -413,7 +413,7 @@ def plot_two_feature_scatter(
     sns.scatterplot(data=data, x=feature2, y=target, ax=ax, alpha=0.30,
                     label=f'{feature2} vs {target}', color=colors[1])
 
-    ax.set_title(f"{feature1} & {feature2} vs {target}")
+    ax.set_title(f"{feature1} & {feature2} vs {target}", weight='bold')
     ax.set_xlabel("Feature Value")
     ax.set_ylabel(target)
     ax.legend()
@@ -477,7 +477,7 @@ def plot_monthly_boxplot(
             ax=tmp_ax
         )
 
-        tmp_ax.set_title(title, fontsize=14)
+        tmp_ax.set_title(title, fontsize=14, weight='bold')
         tmp_ax.set_ylabel(ylabel)
         tmp_ax.grid(True, axis='y', alpha=0.3)
 
@@ -499,7 +499,7 @@ def plot_monthly_boxplot(
         ax=ax
     )
 
-    ax.set_title(title, fontsize=14)
+    ax.set_title(title, fontsize=14, weight='bold')
     ax.set_ylabel(ylabel)
     ax.grid(True, axis='y', alpha=0.3)
 
@@ -537,7 +537,7 @@ def plot_feature_vs_target(
         sns.regplot(df, x=x, y=y, ax=ax_tmp, scatter=False,
                     color=reg_color, line_kws={'linestyle': '--'})
 
-        ax_tmp.set_title(title)
+        ax_tmp.set_title(title, weight='bold')
         ax_tmp.set_xlabel(xlabel)
         ax_tmp.set_ylabel(ylabel)
         ax_tmp.grid(True, alpha=0.3)
@@ -557,7 +557,7 @@ def plot_feature_vs_target(
     sns.regplot(df, x=x, y=y, scatter=False, ax=ax,
                 color=reg_color, line_kws={'linestyle': '--'})
 
-    ax.set_title(title)
+    ax.set_title(title, weight='bold')
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.grid(True, alpha=0.3)
@@ -602,7 +602,7 @@ def plot_categorical_impact(
 
     sns.boxplot(data=df, x=category, y=target, order=order_sorted, palette=palette, ax=ax)
 
-    ax.set_title(f"{category} Impact on {target} (Sorted by {sort_by})")
+    ax.set_title(f"{category} Impact on {target} (Sorted by {sort_by})", weight='bold')
     ax.set_xlabel(category)
     ax.set_ylabel(target)
     ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
@@ -621,3 +621,151 @@ def plot_categorical_impact(
 
 # ================================= TIME SERIES ANALYSIS ================================= #
 
+def plot_timeseries(
+    df,
+    column,
+    start=None,
+    end=None,
+    ax=None,
+    figsize=(15,4),
+    color=None,
+    alpha=0.6,
+    ylabel=None,
+    title=None,
+    grid=True,
+    save_path=None,
+):
+    df_range = df.loc[start:end] if (start or end) else df
+
+    # Detect if we need to create a new figure
+    standalone = ax is None
+    if standalone:
+        fig, ax = plt.subplots(figsize=figsize)
+    else:
+        fig = ax.figure
+
+    # Plot data
+    ax.plot(df_range[column], alpha=alpha, color=color)
+    ax.set_ylabel(ylabel if ylabel else column)
+    ax.set_title(title if title else f"{column} Over Time", weight='bold')
+    if grid:
+        ax.grid(True)
+
+    if save_path:
+        # Create a temporary figure
+        temp_fig = plt.figure(figsize=figsize)
+        temp_ax = temp_fig.add_subplot(111)
+
+        # Copy artists from original axis
+        for artist in ax.get_children():
+            try:
+                artist_figure = artist.figure
+                artist.axes = temp_ax
+                temp_ax._children.append(artist)
+            except:
+                pass
+
+        temp_ax.set_xlim(ax.get_xlim())
+        temp_ax.set_ylim(ax.get_ylim())
+        temp_ax.set_title(ax.get_title(), weight='bold')
+        temp_ax.set_xlabel(ax.get_xlabel())
+        temp_ax.set_ylabel(ax.get_ylabel())
+        temp_ax.grid(grid)
+
+        temp_fig.savefig(save_path, dpi=300, bbox_inches="tight")
+        plt.close(temp_fig)
+
+    # Show only if standalone
+    if standalone:
+        plt.tight_layout()
+        plt.show()
+
+    return ax
+
+
+def plot_overlay_timeseries(
+    df,
+    columns,
+    start=None,
+    end=None,
+    ax=None,
+    figsize=(15,5),
+    colors=None,
+    alpha=0.5,
+    ylabel="Value",
+    title=None,
+    grid=True,
+    save_path=None,
+):
+    # Slice range
+    df_range = df.loc[start:end] if (start or end) else df
+
+    # Determine if function owns the figure
+    standalone = False
+    if ax is None:
+        fig, ax = plt.subplots(figsize=figsize)
+        standalone = True
+    else:
+        fig = ax.figure
+
+    # Default colors based on Matplotlib cycle
+    if colors is None:
+        colors = [None] * len(columns)
+
+    # Plot each column
+    for col, c in zip(columns, colors):
+        ax.plot(df_range[col], alpha=alpha, label=col, color=c)
+
+    # Labels and titles
+    ax.set_ylabel(ylabel)
+    ax.set_title(title if title else "Overlay Time Series", weight='bold')
+    if grid:
+        ax.grid(True)
+    ax.legend()
+
+    # Save figure
+    if save_path:
+        plt.tight_layout()
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+
+    # Show only if standalone
+    if standalone:
+        plt.tight_layout()
+        plt.show()
+
+    return ax
+
+
+def boxplot_by_group(
+    df, columns,
+    group_col,
+    start=None,
+    end=None,
+    figsize=(12, 6),
+    fontsize=12,
+    save_path=None,
+    sharey=False
+):
+    df = df.loc[start:end] if (start or end) else df
+
+    n_cols = len(columns)
+    fig, axes = plt.subplots(1, n_cols, figsize=figsize, sharey=sharey)
+
+    # if only 1 column, axes is not iterable
+    if n_cols == 1:
+        axes = [axes]
+
+    for ax, col in zip(axes, columns):
+        df.boxplot(column=col, by=group_col, ax=ax)
+        ax.set_title(f"{col} Distribution by {group_col}", fontsize=fontsize, weight='bold')
+        ax.set_xlabel(group_col, fontsize=fontsize)
+        ax.set_ylabel(col, fontsize=fontsize)
+        ax.grid(True, alpha=0.3)
+
+    plt.suptitle("")  # remove default grouped title
+    plt.tight_layout()
+
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+
+    return fig, axes
